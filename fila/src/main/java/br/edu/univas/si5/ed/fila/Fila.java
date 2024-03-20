@@ -1,22 +1,25 @@
 package br.edu.univas.si5.ed.fila;
 
 public class Fila {
-	private Pessoa inicio = null;
-	private Pessoa ultimo = null;
+	//	private Pessoa inicio = null;
+	//	private Pessoa ultimo = null;
+
 	// substituir os 2 atributos pelos correspondentes:
-	// private No inicio = null;
-	// private No ultimo = null;
+	private No inicio = null;
+	private No ultimo = null;
 	// Fazer os ajustes necessários na classe fila
 
 	private int tamanho = 0;
 
-	public void inserir(Pessoa novo) {
+	public void inserir(Pessoa novaPessoa) {
+		No novoNo = new No();
+		novoNo.pessoa = novaPessoa;
 		if (estaVazia()) {
-			inicio = novo;
+			inicio = novoNo;
 		} else {
-			ultimo.proximo = novo;
+			ultimo.proximo = novoNo;
 		}
-		ultimo = novo;
+		ultimo = novoNo;
 		tamanho++;
 	}
 
@@ -30,22 +33,23 @@ public class Fila {
 
 	public void imprimir() {
 		// loop que começa no início e termina no último
-		Pessoa pessoaDaVez = inicio;
-		while (pessoaDaVez != null) {
-			System.out.print(pessoaDaVez.nome + " ");
-			pessoaDaVez = pessoaDaVez.proximo;
+		No noDaVez = inicio;
+		while (noDaVez != null) {
+			System.out.print(noDaVez.pessoa.nome + " ");
+			noDaVez = noDaVez.proximo;
 		}
 		System.out.println();
 	}
 
 	public Pessoa remover() {
-		Pessoa removido = inicio;
+		No noRemovido = inicio;
 		if (!estaVazia()) {
 			inicio = inicio.proximo; // move o início para o 2o
 			tamanho--;
 		} else {
 			ultimo = null;
+			return null;
 		}
-		return removido;
+		return noRemovido.pessoa;
 	}
 }
