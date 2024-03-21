@@ -1,8 +1,8 @@
 package br.edu.univas.si5.ed.fila;
 
 public class Fila {
-	//	private Pessoa inicio = null;
-	//	private Pessoa ultimo = null;
+	// private Pessoa inicio = null;
+	// private Pessoa ultimo = null;
 
 	// substituir os 2 atributos pelos correspondentes:
 	private No inicio = null;
@@ -52,4 +52,33 @@ public class Fila {
 		}
 		return noRemovido.pessoa;
 	}
+
+	// exercício
+	public int comprimento() {
+		int count = 0;
+
+		No noDaVez = inicio;
+		while (noDaVez != null) {
+			count++;
+			noDaVez = noDaVez.proximo;
+		}
+		return count;
+	}
+
+	// a versão 1 está na classe FilaUtil
+
+	// não modifica a fila original
+	public void dividirFilaV2(Fila original, Fila fila1, Fila fila2) {
+		No noDaVez = original.inicio;
+		while (noDaVez != null) {
+			Pessoa pessoa = noDaVez.pessoa;
+			char letra = pessoa.nome.toUpperCase().charAt(0);
+			if (letra < 'M') {
+				fila1.inserir(pessoa);
+			} else {
+				fila2.inserir(pessoa);
+			}
+		}
+	}
+
 }
